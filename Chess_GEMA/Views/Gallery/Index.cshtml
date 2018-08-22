@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Chess_GEMA.Models.Gallery>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div>
+        <h2>Galerie</h2>
+        <!----Wenn keine Gallerieeinträge vorhanden sind gibt er folgende Meldung aus.-->
+        @if (Model.Count().Equals(0))
+        {
+            <text>Noch keine Galerien vorhanden. </text>
+        }
+
+        <!----Es wird mit einer foreach Schleife alle Gallerieeinträge ausgegeben, aber immer nur 3 in einer Reihe,
+            dann springt er eine Zeile nach unten und fügt dort wieder 3 Stück nebeneinander.-->
+        <div class="jumbotron">
+            <table>
+                @{var tdCount = 0;}
+                @foreach (var post in Model)
+                {
+                    if (tdCount == 3)
+                    {@Html.Raw("<tr>")
+                    }
+                    <td>
+                        <table>
+                            <thead>
+                            <h2>@post.Title</h2>
+                            </thead>
+                            <tr>
+                                <td><a href="@Url.Action("Detail", "Gallery", new {id = post.Id})">
+                                    <img src="@post.TitelImage.Path" alt="@post.TitelImage.Name" class="img-rounded image-size-medium"/>
+                                </a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+                                    {<div style="padding: 2px 5px 0px 0px">
+    @Html.ActionLink("Edit", "Edit", "Gallery", new { @class = "btn btn-warning btn-sm" })
+    @Html.ActionLink("Delete", "Delete", "Gallery", new { id = post.Id }, new { @class = "btn btn-danger btn-sm" })
+    @Html.ActionLink("Add", "AddToGallery", "Gallery", new { id = post.Id }, new { @class = "btn btn-success btn-sm" })
+</div>
+                                    }
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+
+                    tdCount++;
+                    if (tdCount == 3)
+                    {
+                        tdCount = 0;
+                        @Html.Raw("</tr>")
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

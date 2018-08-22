@@ -1,0 +1,63 @@
+﻿
+@using Chess_GEMA.Models
+
+@model Chess_GEMA.Models.UserRoleModel
+
+@{
+
+    ViewBag.Title = "Change Roles";
+}
+
+<div class="row">
+
+    <div class="col-lg-10 col-lg-offset-1 col-md-8 col-md-offset-8">
+
+        <div class="moderator-index-head">
+            <h2>Application Users</h2>
+        </div>
+
+        <div class="moderator-index-body">
+
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Member in Roles</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>          
+                    @foreach (var user in Model.ApplicationUsers)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>
+
+                                @foreach (var role in user.Roles)
+                                {
+                                    var roleName = Model.ApplicationRoles.SingleOrDefault(ar => ar.Id == @role.RoleId);
+
+                                    if (roleName != null)
+                                    {
+                                        <span class="badge">@roleName.Name</span>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @* Name: Edit, Methode: Edit,  Controller: admin, Wert:Id, Aussehen(css) *@
+                                @Html.ActionLink("Edit", "Edit", "Admin", new { userId = user.Id }, new { @class = "btn btn-warning btn-xs" })
+                                @Html.ActionLink("Delete", "Delete", "Admin", new { userId = user.Id }, new { @class = "btn btn-danger btn-xs" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="moderator-index-footer">
+
+        </div>
+    </div>
+</div>

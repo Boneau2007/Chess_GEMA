@@ -1,0 +1,28 @@
+﻿@model Chess_GEMA.Models.ApplicationUser
+@{
+    ViewBag.Title = "Kontakt";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+@using (Html.BeginForm("GetById", "Account"))
+{
+<div>
+    <div style="float: left; width: 35%" class="form-group">
+        <address>
+            @Html.DisplayFor(model => Model.Title): @Html.DisplayFor(model => Model.Sex) @Html.DisplayFor(model => Model.SurName) @Html.DisplayFor(model => Model.FirstName)<br/>
+            @Html.DisplayFor(model => Model.Company)<br/>
+            @Html.DisplayFor(model => Model.Street) @Html.DisplayFor(model => Model.StreetNumber)<br/>
+            @Html.DisplayFor(model => Model.Postcode) @Html.DisplayFor(model => Model.City)<br/>
+            Phone: @Html.DisplayFor(model => Model.PhoneNumber)<br/>
+            <strong>Info:</strong> <a style="color: blue" href="mailto:@Html.DisplayFor(model => Model.Email)"> @Html.DisplayFor(model => Model.Email)</a>
+        </address>
+    </div>
+    <div style="float:left">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2603.077785302372!2d7.1101899153632555!3d49.27492327933045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795c836b7d74571%3A0xd1410c99bd4d9d4c!2sNeue+Bahnhofstra%C3%9Fe+15%2C+66386+St.+Ingbert!5e0!3m2!1sde!2sde!4v1522334195884" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+}
+

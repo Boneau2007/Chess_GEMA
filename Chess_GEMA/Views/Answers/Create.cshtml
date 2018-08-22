@@ -1,0 +1,36 @@
+﻿@model Chess_GEMA.Models.Answer
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            @using (Html.BeginForm("Create", "Answers", FormMethod.Post))
+            {
+                <div class="jumbotron">
+                    <div class="moderator-details-head">
+                        <strong>Meine Antwort</strong>
+                        <br/>
+                        <span>Entwurf</span>
+                    </div>
+                    <div class="btn-toolbar moderator-details-head col-md-8">
+                        <div class="col-md-1" style="padding: 10px">
+                            <button class="glyphicon glyphicon-bold"></button>
+                        </div>
+                        <div class="col-md-1" style="padding: 10px">
+                            <button class="glyphicon glyphicon-italic"></button>
+                        </div>
+                        <div class="col-md-1" style="padding: 10px">
+                            <button class="glyphicon glyphicon-list"></button>
+                        </div>
+                    </div>
+                    <div class="container moderator-form-body col-md-8">
+                        <p>
+                            @Html.TextAreaFor(m => m.Text, new {@class = "form-control center-block ", autofocus = "false"})
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary moderator-form-footer" style="float: right">Submit</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

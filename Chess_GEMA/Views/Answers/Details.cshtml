@@ -1,0 +1,29 @@
+﻿@model Chess_GEMA.Models.Answer
+
+<div class="row"  style="padding: 10px;">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <div class="col-md-12 img-rounded" style="background-color: azure; padding: 10px;">
+                <div>
+                    <strong>Antwort</strong> von @Html.ActionLink(Model.Answerer.UserName, "Details", "Questions", new {id = Model.Id}, new {@class = "text-info"})
+                    @if (Model.StarAnswer)
+                    {
+                        <span style="color: black">@Html.ActionLink(" ", "SetStarAnswer", "Answers", new {id = Model.Id}, new {@class = "glyphicon glyphicon-star"})</span>
+                    }
+                    else
+                    {
+                        <span style="color: black">@Html.ActionLink(" ", "SetStarAnswer", "Answers", new {id = Model.Id}, new {@class = "glyphicon glyphicon-star-empty"})</span>
+                    }
+
+                    <br/>
+                    <span class="lead p2">@Model.Date</span>
+                </div>
+                <div class="container moderator-form-body col-md-8">
+                    <p>
+                        @Model.Text
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

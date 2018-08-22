@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Chess_GEMA.Models.File>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Go To: Upload File", "Create")
+</p>
+@if (Model.Count().Equals(0))
+{
+    <text>Noch keine Dateien hochgeladen. </text>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Format)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Path)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => post.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => post.Owner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => post.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => post.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => post.Format)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => post.Path)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    
+}

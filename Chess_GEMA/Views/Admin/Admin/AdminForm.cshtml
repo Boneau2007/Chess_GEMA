@@ -1,0 +1,110 @@
+﻿@model Chess_GEMA.Models.UserRoleModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    const string actionType = "Edit";
+
+}
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+
+        <div class="moderator-form-head">
+            <div class="well well-sm">@actionType - Application User Roles</div>
+        </div>
+
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="jumbotron">
+
+                @using (Html.BeginForm("Save", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.Label("Name", new { @class = "col-lg-2 control-label" })
+
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.ApplicationUser.UserName, new
+                                {
+                                   @disabled = "disabled",
+                                   @class = "form-control customize-form-disabled"
+                                })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Email", new { @class = "col-lg-2 control-label" })
+
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.ApplicationUser.Email, new
+                                {
+                                   @disabled = "disabled",
+                                   @class = "form-control customize-form-disabled"
+                                })
+                            </div>
+                        </div>
+
+                        <div class="form-group customize-form-checkbox">
+                            <div class="col-lg-2 control-label"><b>Roles</b></div>
+                            <div class="col-lg-10">
+                                @foreach (var role in Model.ApplicationRoles)
+                                {
+                                    if (Model.OldUserRoles.Contains(role.Name))
+                                    {
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"
+                                                       checked
+                                                       name="selectedRoles[]"
+                                                       value="@role.Name"/>
+                                                <span class="badge">@role.Name</span>
+                                                &nbsp;&nbsp;
+                                            </label>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"
+                                                       name="selectedRoles[]"
+                                                       value="@role.Name"/>
+                                                <span class="badge">@role.Name</span>
+                                                &nbsp;&nbsp;
+                                            </label>
+                                        </div>
+                                    }
+                                }
+                                @ViewBag.Error
+                            </div>
+
+                        </div>
+
+                        @Html.Hidden("userId",Model.ApplicationUser.Id)
+                        @Html.AntiForgeryToken()
+                        <div class="form-group customize-form-button">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                @Html.ActionLink("Cancel", "Index", "Admin", null, new { @class = "btn btn-default" })
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="moderator-form-footer">
+
+    </div>
+
+</div>
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

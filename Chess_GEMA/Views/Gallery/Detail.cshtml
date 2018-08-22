@@ -1,0 +1,11 @@
+﻿
+
+@if (Model.Count.Equals(0))
+{
+    <text>Noch keine Bilder vorhanden. </text>
+}
+
+@foreach (var post in Model)
+{
+    <img src="@post.Path" alt="@post.Name" class="img-rounded image-size-medium" />
+}

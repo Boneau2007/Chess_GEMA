@@ -1,0 +1,75 @@
+﻿@using System.Security.Principal
+@using Chess_GEMA.Controllers.FAQ
+@using Chess_GEMA.Models
+@using Microsoft.AspNet.Identity.EntityFramework
+@using Microsoft.Owin.Security.Cookies
+@model Chess_GEMA.ViewModels.AQFormViewModel
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="jumbotron">
+            <article class="col-md-12 img-rounded" style="background-color: azure; padding: 0px 10px 0px 10px">
+                <div class="moderator-details-head">
+                    <strong>Frage</strong> von @Html.ActionLink(Model.Question.Questioner.UserName, "Details", "Questions", new { id = Model.Question.Id }, new { @class = "text-info" })
+                    @Html.Partial("AnsweredForm")
+                    <br />
+                    <span>@Model.Question.Date</span>
+                </div>
+                <div Class="moderator-details-body" style="margin: 10px">
+                    <h1>@Model.Question.Topic</h1>
+                    <br/>
+                    <div>
+                        <p>@Model.Question.Text</p>
+                    </div>
+                </div>
+                <div Class="moderator-details-footer">
+                    <table style="padding: 10px">
+                        <tr>
+                            <td>
+                                <div class="col-md-1">
+                                    @if (Model.Question.Answered)
+                                    {@Html.ActionLink("Antworten", "Create", "Answers", new {id = Model.Question.Id}, new {@class = "btn btn-info btn-sm disabled"})
+
+
+                                    }
+                                    else
+                                    {@Html.ActionLink("Antworten", "Create", "Answers", new {id = Model.Question.Id}, new {@class = "btn btn-info btn-sm "})
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>
+                                        @if (User.IsInRole("User") || User.IsInRole("Moderator") || User.IsInRole("Admin"))
+                                        {
+
+                                            @Html.ActionLink(" ", "LikeQuestions", "Questions", new {id = Model.Question.Id}, new {@class = "glyphicon glyphicon-thumbs-up "})
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(" ", "Login", "Account", new {id = "loginLink"}, new { @class = "glyphicon glyphicon-thumbs-up " })
+                                        }
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-md-1">
+                                    @Model.Question.Likes
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </article>
+            <div class="center-block">
+                <center>Antworten @Model.Answers.Count</center>
+            </div>
+            <br/>
+            <hr/>
+            @foreach (var answer in Model.Answers)
+            {
+                @Html.Partial("/Views/Answers/Details.cshtml", answer)
+            }
+        </div>
+    </div>
+</div>

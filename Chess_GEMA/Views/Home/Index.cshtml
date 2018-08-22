@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Chess_GEMA.Models.NewsFeed>
+@{
+    ViewBag.Title = "Startseite";
+}
+
+<div class="jumbotron container-fluid">
+
+    <h2>@ViewBag.Title</h2>
+    <hr class="my-4">
+    <div>
+        <div class="navbar-right ">
+            <img src="Content/Images/fragezeichen.jpg" alt="Startseite" class="img-responsive thumbnail" width="512" height="512" />
+            <div class="pull-right table-responsive ">
+                <!----Wenn der Benutzer als Admin oder Moderator eingeloggt, kann er auf die Edit und Info Buttons zugreifen-->
+                @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+                {
+
+                   // @Html.ActionLink("Edit", "EditContactPicture", "Home", new { @class = "btn btn-warning btn-md" })
+                   // @Html.ActionLink("Info", "Show", "Image", new { @class = "btn btn-info btn-md" })
+                }
+            </div>
+        </div>
+
+        <p>
+            Schach (von persisch šāh Schah / شاه /‚König‘ – daher die Bezeichnung „das königliche Spiel“) 
+            ist ein strategisches Brettspiel, bei dem zwei Spieler abwechselnd Spielsteine (die Schachfiguren)
+            auf einem Spielbrett (dem Schachbrett) bewegen. Ziel des Spiels ist, den Gegner schachmatt zu setzen,
+            das heißt seine als König bezeichnete Spielfigur unabwendbar anzugreifen.
+        </p>
+    </div>
+    <hr class="my-4">
+</div>
+
+
+
+<div>
+    <!----Mit einer foreach Schleife und einem Counter werden 4 Einträge des NewsFeeds Angezeigt. Wenn keine
+        Einträge vorhanden sind zeigt er nichts an.-->
+@{  int counter = 0;
+    foreach (var news in Model)
+    {
+        counter++;
+        if (counter > 0 && counter < 5)
+        {
+
+
+                        <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Neuigkeiten</div>
+                            <div class="card-body">
+                                <h4 class="card-title">@news.Titel</h4>
+                                <p class="card-text">@news.Text</p>
+                            </div>
+                        </div>
+            }
+        }
+    }
+            </div>

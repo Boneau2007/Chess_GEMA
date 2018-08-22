@@ -1,0 +1,19 @@
+﻿<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            @using (Html.BeginForm("AddToGallery", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <label for="file">Upload Bild:</label>
+                // type=file Zeigt Choose File button und den Namen des ausgewählten elements
+                // name=file
+                <input type="file" name="image" id="file" />
+
+                <input type="submit" value="Upload Image" />
+                @ViewBag.Message
+
+            }
+        </div>
+    </div>
+</div>
+
+

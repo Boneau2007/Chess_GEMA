@@ -1,0 +1,42 @@
+﻿@using Chess_GEMA.Models
+@model Chess_GEMA.Models.NewsFeed
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Beitrag Bearbeiten</h2>
+        <div class="jumbotron">
+            <h2 class="display-3">Bearbeiteter Beitrag</h2>
+            <hr class="my-4">
+            @using (Html.BeginForm("Edit", "NewsFeed", FormMethod.Post))
+    {
+        <fieldset>
+            <form>
+                <table>
+                    <tr>
+                        <td>
+                            <!----Es werden Textboxen für den Titel und den Text erstellt und der Inhalt wird nach
+                                Submit an die Edit Methode des NewsFeedControllers weiter gegeben.-->
+                            <div class="form-group">
+                                @Html.Label("Titel", new { @class = "col-lg-2 control-label" })
+                                @Html.TextBoxFor(m => m.Titel, new { @class = "form-control", autofocus = "true" })
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Text Area", new { @class = "col-lg-4 control-label" })
+                                @Html.TextAreaFor(m => m.Text, new { @class = "form-control", autofocus = "true" })
+                                <span class="text-danger">@ViewBag.Error</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </fieldset>
+}
+        </div>
+    </div>
+</div>
+

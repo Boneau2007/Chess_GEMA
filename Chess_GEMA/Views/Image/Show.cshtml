@@ -1,0 +1,7 @@
+﻿@using Microsoft.Ajax.Utilities
+@model IEnumerable<Chess_GEMA.Models.Image>
+
+@foreach (var post in Model)
+{
+    <img src="~@Url.Content(post.Path)" alt="Artwork Image" width="215" height="215" />
+}

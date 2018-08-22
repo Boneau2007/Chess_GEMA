@@ -1,0 +1,48 @@
+﻿@using Chess_GEMA.Models
+@model IEnumerable<Chess_GEMA.Models.NewsFeed>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>News-Feed</h2>
+        <!----Wenn noch keine News vorhanden sind wird "Noch keine News-Feeds vorhanden." ausgegeben-->
+        @if (Model.Count().Equals(0))
+        {
+            <text>Noch keine News-Feeds vorhanden. </text>
+        }
+
+        <!----foreach Schleife mit welcher jeder Newseintrag aus der Datenbank untereinander ausgegeben wird-->
+        @foreach (var post in Model)
+        {
+            <div class="jumbotron">
+                <div class="moderator-details-body">
+                    <h2>@post.Titel</h2>
+
+                    <!----Wenn der Benutzer Admin oder Moderator ist, kann er auf die Edit und Delete Buttons zugreifen.-->
+                    @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+    {
+
+                <span style="padding: 0px 5px 0px 0px">
+                    @Html.ActionLink("Edit", "Save", "NewsFeed", new { id = post.Id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", "NewsFeed", new { id = post.Id }, new { @class = "btn btn-danger btn-sm" })
+                </span>
+}
+                </div>
+                <div class="lead p2">
+                    <!----Wenn der Post editiert wurde wird dies Angezeigt-->
+                    @if (post.Edited)
+                    {<text><font color=green>BEARBEITED </font></text>}
+                    @post.Moderator, <i>@post.Date</i> <i>@post.Id</i>
+                </div>
+                <img src="@post.TitelImage.Path" alt="@post.TitelImage.Name" width="480" height="320"/>
+                <hr>
+
+                <p>@post.Text</p>
+
+
+            </div>
+        }
+    </div>
+</div>

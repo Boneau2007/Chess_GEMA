@@ -1,0 +1,184 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: 2px solid red;
+}
+
+
+
+/**
+    Images Sizes
+*/
+
+.image-size-thumb {
+    max-width: 125px !important;
+}
+
+.image-size-big {
+    max-width: 800px !important;
+    max-height: 800px !important;
+}
+
+.image-size-medium {
+    max-width: 350px !important;
+
+}
+
+
+
+
+/**
+    Moderator Index views
+*/
+
+.moderator-index-head {
+    margin-top: 50px !important;
+    margin-bottom: 40px;
+}
+
+.moderator-index-body {
+
+}
+
+.moderator-index-footer {
+
+}
+
+
+
+/**
+    Moderator Details views
+*/
+
+.moderator-details-head {
+    margin-top: 50px !important;
+    margin-bottom: 40px;
+}
+
+.moderator-details-body {
+
+}
+
+.moderator-details-footer {
+
+}
+
+
+/**
+    Moderator Form views
+*/
+
+.moderator-form-head {
+    margin-top: 50px !important;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 24pt !important;
+}
+
+.moderator-form-body {
+
+    width: 550px;
+}
+
+.moderator-form-footer {
+    text-align: center
+}
+
+
+/*******************************************************************************
+  User Material - Section - Start
+*******************************************************************************/
+
+.breadcrumb li a {
+    color: #000033;
+}
+
+.badge {
+    margin-left: 5px;
+}
+
+.user-panel-body {
+    background-color: #f9f9f9;
+}
+
+
+
+.user-panel-badges {
+    background-color: #d1e0e0 !important;
+}
+
+.user-panel-badges .badge {
+
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+.user-panel-badges a {
+    color: rgb(217, 237, 247);
+    }
+
+a {
+    color: rgb(217, 237, 247);
+}
+
+
+
+.user-panel-actions {
+
+    font-weight: bold;
+}
+
+
+table a {
+    color: black;
+}
+
+
+/*
+    Formular - Customize - Section
+*/
+
+.customize-form-disabled {
+    background-color: aliceblue !important;
+}
+
+.customize-form-button {
+    margin-top: 1.8em;
+}
+.customize-form-checkbox {
+    margin-top: -0.6em;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+.green {
+    background-color: green;
+}

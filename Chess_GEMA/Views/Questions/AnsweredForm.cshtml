@@ -1,0 +1,26 @@
+﻿<span style="padding: 5px">
+@if (!Model.Question.Answered)
+{
+
+    if (Model.Question.Questioner.UserName.Equals(User.Identity.Name))
+    {
+        @Html.ActionLink(" ", "SwitchAnswered", "Questions", new {id = Model.Question.Id}, new {@class = "glyphicon glyphicon-remove-circle alert-danger"})
+    }
+    else
+    {
+        <span class="glyphicon glyphicon-remove-circle alert-danger" style="padding: 5px"></span>
+    }
+}
+else
+{
+
+    if (Model.Question.Questioner.UserName.Equals(User.Identity.Name))
+    {
+        @Html.ActionLink(" ", "SwitchAnswered", "Questions", new {id = Model.Question.Id}, new {@class = "glyphicon glyphicon-ok-circle alert-success" })
+    }
+    else
+    {
+        <span class="glyphicon glyphicon-ok-circle alert-success" style="padding: 5px"></span>
+    }
+}
+ </span>

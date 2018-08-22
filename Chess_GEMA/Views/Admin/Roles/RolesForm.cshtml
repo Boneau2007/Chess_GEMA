@@ -1,0 +1,63 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var actionType = Model.Id.IsNullOrWhiteSpace() ? "Save" : "Edit";
+    ViewBag.Title = @actionType + " - Application Roles";
+}
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+
+        <div class="moderator-form-head">
+            <div class="well well-sm">@ViewBag.Title</div>
+        </div>
+
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="jumbotron">
+
+                @using (Html.BeginForm("Save", "Roles", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.Label("Name", new { @class = "col-lg-2 control-label" })
+
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", autofocus = "true" })
+                                <span class="text-danger">@ViewBag.Error</span>
+                            </div>
+
+                        </div>
+
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.AntiForgeryToken()
+                        <div class="form-group customize-form-button">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                @Html.ActionLink("Cancel", "Index", "Roles", null, new { @class = "btn btn-default" })
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="moderator-form-footer">
+
+    </div>
+
+</div>
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+

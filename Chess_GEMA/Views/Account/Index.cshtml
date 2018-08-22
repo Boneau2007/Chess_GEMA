@@ -1,0 +1,15 @@
+﻿@model Chess_GEMA.Models.ApplicationUser
+@{
+    ViewBag.Title = "Kontakt";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<address>
+    @Model.Title: @Model.Title @Model.SurName @Model.FirstName<br />
+    @Model.Company<br />
+    @Model.Street @Model.StreetNumber<br />
+    @Model.Postcode @Model.City<br />
+    Phone: @Model.PhoneNumber<br />
+    <strong>Info:</strong>   <a href="mailto:@Model.Email">@Model.Email</a>
+</address>

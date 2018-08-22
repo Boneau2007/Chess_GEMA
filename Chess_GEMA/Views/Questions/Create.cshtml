@@ -1,0 +1,27 @@
+﻿@model Chess_GEMA.Models.Question
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Frage</h2>
+        <div class="jumbotron table-bordered">
+            
+
+            @using (Html.BeginForm("Create", "Questions", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post))
+            {
+                @Html.Label("Fragetitel", new {@class = "col-lg-2 control-label"})
+                @Html.TextBoxFor(m => m.Topic, new {@class = "form-control", autofocus = "true"})
+                @Html.ValidationMessageFor(m => m.Topic, "", new {@class = "text-danger"})
+                <hr/>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"> Message </label>
+                    @Html.TextAreaFor(m => m.Text, new {rows = "20", placeholder = Html.DisplayNameFor(m => m.Text), @class = "form-control input-lg"})
+                    @Html.ValidationMessageFor(m => m.Text, "", new {@class = "text-danger"})
+                </div>
+                <button type="submit" class="btn-primary img-rounded "><span>Frage stellen</span></button>
+            }
+        </div>
+    </div>
+</div>
+ 
+

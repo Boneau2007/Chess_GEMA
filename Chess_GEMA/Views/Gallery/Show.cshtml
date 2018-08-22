@@ -1,0 +1,16 @@
+﻿@model Chess_GEMA.Models.Gallery
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div Class="moderator-details-head">
+            <h2>Details: @Model.Title</h2>
+        </div>
+        <div Class="moderator-details-body">
+            <h2>Details: @Model.Title</h2>
+            <p>@Model.Owner</p>
+        </div>
+        <div Class="moderator-details-footer">
+            @Html.ActionLink("Back to List", "Index", "Gallery", new {@class="btn btn-default"})
+        </div>
+    </div>
+</div>
